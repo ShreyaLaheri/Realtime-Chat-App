@@ -1,0 +1,28 @@
+.chat .topbar {
+  height: 64px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 18px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, .1);
+}
+
+.chat .logo {
+  margin-right: 16px;
+}
+
+.chat .main-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.chat .left-wrapper {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, .1);
+  flex: 25%;
+}
+
+.chat .right-wrapper {
+  flex: 75%;
+}

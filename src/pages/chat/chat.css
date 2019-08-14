@@ -1,28 +1,133 @@
-.chat .topbar {
-  height: 64px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  font-size: 18px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, .1);
-}
-
-.chat .logo {
-  margin-right: 16px;
-}
-
 .chat .main-wrapper {
   display: flex;
   height: 100vh;
 }
 
 .chat .left-wrapper {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, .1);
   flex: 25%;
+  border-right: 2px solid #eee;
+  display: fixed;
+}
+
+.chat .left-wrapper .topbar {
+  height: 56px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  border-bottom: 2px solid #eee;
+}
+
+.chat .logo {
+  margin-right: 8px;
+  height: 34px;
 }
 
 .chat .right-wrapper {
   flex: 75%;
+  background-color: #EEE;
+  position: relative;
+}
+
+.chat .right-wrapper .topbar {
+  background-color: white;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, .1);
+  position: relative;
+  height: 56px;
+  align-items: center;
+  display: flex;
+}
+
+.chat .right-wrapper .details {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 30px;
+}
+
+.chat .right-wrapper .details .name {
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.chat .right-wrapper .details .circle {
+  height: 35px;
+  width: 35px;
+  border: 1px solid blue;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 16px;
+  text-align: center;
+}
+
+.chat .right-wrapper .details .circle>span {
+  position: relative;
+  top: 18%;
+  color: blue;
+}
+
+.chat .right-wrapper .logout {
+  position: absolute;
+  right: 50px;
+  vertical-align: middle;
+  display: flex;
+}
+
+.chat .right-wrapper .logout>span {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.chat .right-wrapper .logout>i {
+  cursor: pointer;
+}
+
+.chat .right-wrapper .text-area {
+  background-color: white;
+  border-radius: 30px;
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  bottom: 1px;
+  border: none;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat .right-wrapper input[type="text"] {
+  border: none;
+  font-size: 16px;
+  margin-left: 32px;
+  height: 60px;
+  width: 100%;
+}
+
+.chat .right-wrapper .text-area .send-icon {
+  margin-right: 32px;
+}
+
+.chat .right-wrapper .message-area {
+  padding: 24px;
+}
+
+.chat .right-wrapper .message-area .send {
+  background-color: lightgreen;
+  border-radius: 10px;
+  width: 40%;
+  padding: 8px;
+  margin-bottom: 12px;
+  clear: both;
+}
+
+.chat .right-wrapper .message-area .receive {
+  background-color: white;
+  border-radius: 10px;
+  width: 40%;
+  padding: 8px;
+  float: right;
+  margin-bottom: 12px;
+  clear: both;
 }

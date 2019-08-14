@@ -30,19 +30,19 @@ function Signup(props) {
       <div className="signup-card">
         <img src={logo} alt="" width="80px" />
         <p className="title">Chat App</p>
-        <div class="input-container">
-          <i class="material-icons">person</i>
-          <input class="input-field" type="text" name="Username" value={username} placeholder="Username"
+        <div className="input-container">
+          <i className="material-icons">person</i>
+          <input className="input-field" type="text" name="Username" value={username} placeholder="Username"
             onChange={(e) => setUsername(e.target.value)} />
         </div>
-        <div class="input-container">
-          <i class="material-icons">email</i>
-          <input class="input-field" type="text" name="Email Address" value={email} placeholder="Email Address"
+        <div className="input-container">
+          <i className="material-icons">email</i>
+          <input className="input-field" type="text" name="Email Address" value={email} placeholder="Email Address"
             onChange={(e) => setEmail(e.target.value)} />
         </div>
-        <div class="input-container">
-          <i class="material-icons">lock</i>
-          <input class="input-field" type="text" name="Password" value={pass} placeholder="Password"
+        <div className="input-container">
+          <i className="material-icons">lock</i>
+          <input className="input-field" type="text" name="Password" value={pass} placeholder="Password"
             onChange={(e) => setPass(e.target.value)} />
         </div>
         <div className="footer">

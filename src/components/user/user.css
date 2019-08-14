@@ -1,4 +1,32 @@
 .user {
   border-bottom: 2px solid #EEE;
-  padding: 4px 16px;
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+}
+
+.user .name {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.user .message {
+  color: gray;
+  font-size: 12px;
+}
+
+.user .circle {
+  height: 40px;
+  width: 40px;
+  border: 1px solid blue;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 16px;
+  text-align: center;
+}
+
+.user .circle>span{
+  position: relative;
+  top: 20%;
+  color: blue;
 }

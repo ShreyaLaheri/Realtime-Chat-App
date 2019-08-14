@@ -1,10 +1,14 @@
 import React from 'react'
+import './user.css'
 
-function User() {
+function User(props) {
   return (
     <div className="user">
-      <p>Shreya</p>
-      <p>Lorem ipsum dolor sit amet</p>
+      <div className="circle"><span>S</span></div>
+      <div>
+        <div className="name">{props.name}</div>
+        <div className="message">Lorem ipsum dolor sit amet</div>
+      </div>
     </div>
   )
 }

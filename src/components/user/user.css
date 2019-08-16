@@ -8,6 +8,7 @@
 .user .name {
   margin-bottom: 4px;
   font-size: 14px;
+  text-transform: capitalize;
 }
 
 .user .message {
@@ -23,6 +24,7 @@
   display: inline-block;
   margin-right: 16px;
   text-align: center;
+  text-transform: capitalize;
 }
 
 .user .circle>span{

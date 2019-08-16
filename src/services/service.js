@@ -1,5 +1,4 @@
-import { API, cond, and } from 'space-api';
-import { throws } from 'assert';
+import { API, cond, or } from 'space-api';
 
 class Service {
   constructor(projectId, url) {
@@ -58,6 +57,37 @@ class Service {
     return { ack: true, profiles: profiles };
   }
 
+  getMessages(cb) {
+    const condition = or(cond('to', '==', this.userId), cond('from', '==', this.userId));
+  
+    // Callback for data changes:
+    const onSnapshot = (docs, type, changedDoc) => {
+      cb(null, docs);
+    }
+  
+    // Callback for error while subscribing
+    const onError = (err) => {
+      console.log('Live query error', err)
+      cb(err)
+    }
+  
+    // Subscribe to any changes in posts of 'frontend' category
+    return this.db.liveQuery('messages').where(condition).subscribe(onSnapshot, onError)
+  }
+
+  async sendMessage(id, value) {
+    const obj = {_id : this.generateId(), to: id, from: this.userId, message: value, time:new Date().getDate() }
+
+    // Fire the insert query
+    const res = await this.db.insert('messages').doc(obj).apply();
+
+    // Return -ve ack is status code isn't 200
+    if (res.status !== 200) {
+      return { ack: false };
+    }
+
+    return { ack: true, doc: obj };
+  }
 
   generateId = () => {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {

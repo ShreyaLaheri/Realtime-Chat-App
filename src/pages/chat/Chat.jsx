@@ -5,14 +5,27 @@ import { BrowserRouter as Route, Link } from "react-router-dom";
 import User from '../../components/user/User';
 import client from '../../client';
 
-function Chat(props) {
+function Chat() {
   const [value, setValue] = useState('');
   const [profiles, setProfile] = useState([]);
+  const [id, setId] = useState('');
+  const [messages, setMessages] = useState([]);
 
   const handleEnter = (e) => {
     if (e.key === 'Enter') {
       console.log("enter")
     }
+  }
+
+  const sendMessage = () => {
+    client.sendMessage(id, value).then(res => {
+      if (!res.ack) {
+        alert('Could not send message');
+        return;
+      }
+
+      setValue('')
+    })
   }
 
   useEffect(() => {
@@ -22,10 +35,24 @@ function Chat(props) {
         alert('Could not update todo');
         return;
       }
-  
+
       setProfile(res.profiles);
     })
+
+    const subscription = client.getMessages(((err, list) => {
+      if (err) {
+        alert(err);
+        return
+      }
+      setMessages(list);
+    }))
+
+    return subscription.unsubscribe;
   }, [0]);
+
+  const filteredMessages = messages.filter(msg => {
+    return (msg.to == id || msg.from == id)
+  })
 
   return (
     <div className="chat">
@@ -37,8 +64,10 @@ function Chat(props) {
           </div>
           <div>
             {profiles.map((item) => (
-                <User name={item.name} />)
-            )}
+              <div onClick={() => setId(item._id)}>
+                <User name={item.name} />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -55,17 +84,19 @@ function Chat(props) {
               </Link>
             </div>
           </div>
-          <div className="message-area">
-            <div className="send">Sncnsc</div>
-            <div className="send">Sncnsc</div>
-            <div className="receive">5678</div>
-            <div className="receive">5678</div>
-            <div className="receive">5678</div>
-          </div>
+
+
+          {filteredMessages.map((msg) => (
+            <div className="message-area">
+              <div className={
+                msg.to !== id ? 'send' : 'receive'
+              }>{msg.message}</div>
+            </div>
+          ))}
           <div className="text-area" >
             <input type="text" placeholder="Type a message" value={value}
               onChange={(e) => setValue(e.target.value)} onKeyDown={handleEnter}></input>
-            <i className="material-icons send-icon" disabled={!value}>send</i>
+            <i className="material-icons send-icon" disabled={!value} onClick={sendMessage}>send</i>
           </div>
         </div>
       </div>

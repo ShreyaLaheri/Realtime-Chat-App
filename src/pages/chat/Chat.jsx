@@ -74,8 +74,8 @@ function Chat() {
         <div className="right-wrapper">
           <div className="topbar">
             <div className="details">
-              <div className="circle"><span>S</span></div>
-              <div className="name">Shreya</div>
+              <div className="circle"><span>{client.name.charAt(0)}</span></div>
+              <div className="name">{client.name}</div>
             </div>
             <div className="logout">
               <span>Logout</span>

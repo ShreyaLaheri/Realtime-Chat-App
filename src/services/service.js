@@ -4,6 +4,7 @@ class Service {
   constructor(projectId, url) {
     this.api = new API(projectId, url);
     this.db = this.api.Mongo();
+    this.name = ''
   }
 
   async login(username, pass) {
@@ -20,6 +21,7 @@ class Service {
 
     // Store the userId for further operation
     this.userId = res.data.user._id;
+    this.name = res.data.user.name;
 
     return { ack: true };
   }
@@ -59,24 +61,24 @@ class Service {
 
   getMessages(cb) {
     const condition = or(cond('to', '==', this.userId), cond('from', '==', this.userId));
-  
+
     // Callback for data changes:
     const onSnapshot = (docs, type, changedDoc) => {
       cb(null, docs);
     }
-  
+
     // Callback for error while subscribing
     const onError = (err) => {
       console.log('Live query error', err)
       cb(err)
     }
-  
+
     // Subscribe to any changes in posts of 'frontend' category
     return this.db.liveQuery('messages').where(condition).subscribe(onSnapshot, onError)
   }
 
   async sendMessage(id, value) {
-    const obj = {_id : this.generateId(), to: id, from: this.userId, message: value, time:new Date().getDate() }
+    const obj = { _id: this.generateId(), to: id, from: this.userId, message: value, time: new Date().getDate() }
 
     // Fire the insert query
     const res = await this.db.insert('messages').doc(obj).apply();

@@ -4,7 +4,8 @@ class Service {
   constructor(projectId, url) {
     this.api = new API(projectId, url);
     this.db = this.api.Mongo();
-    this.name = ''
+    this.name = '';
+    this.isLoggedIn = false
   }
 
   async login(username, pass) {
@@ -22,6 +23,7 @@ class Service {
     // Store the userId for further operation
     this.userId = res.data.user._id;
     this.name = res.data.user.name;
+    this.isLoggedIn = true;
 
     return { ack: true };
   }
@@ -40,6 +42,7 @@ class Service {
 
     // Store the userId for further operation
     this.userId = res.data.user._id;
+    this.isLoggedIn = true;
 
     return { ack: true };
   }
@@ -49,7 +52,7 @@ class Service {
     // Fire the query to get the todos
     const res = await this.db.profiles();
 
-    const profiles = res.data.users.filter(profile => profile._id != this.userId)
+    const profiles = res.data.users.filter(profile => profile._id !== this.userId)
 
     // Return -ve ack is status code isn't 200
     if (res.status !== 200) {

@@ -20,9 +20,15 @@ function Signup(props) {
         alert('Error signing up')
         return;
       }
-  
+
       props.history.push('/chat');
     })
+  }
+
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      signup()
+    }
   }
 
   return (
@@ -43,7 +49,7 @@ function Signup(props) {
         <div className="input-container">
           <i className="material-icons">lock</i>
           <input className="input-field" type="text" name="Password" value={pass} placeholder="Password"
-            onChange={(e) => setPass(e.target.value)} />
+            onChange={(e) => setPass(e.target.value)} onKeyDown={handleEnter} />
         </div>
         <div className="footer">
           <div className="already-have-account">Already have an account? </div>

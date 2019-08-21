@@ -10,10 +10,11 @@ function Chat() {
   const [profiles, setProfile] = useState([]);
   const [id, setId] = useState('');
   const [messages, setMessages] = useState([]);
+  const [selected, setSelected] =useState('');
 
   const handleEnter = (e) => {
     if (e.key === 'Enter') {
-      console.log("enter")
+      sendMessage()
     }
   }
 
@@ -23,7 +24,6 @@ function Chat() {
         alert('Could not send message');
         return;
       }
-
       setValue('')
     })
   }
@@ -64,7 +64,7 @@ function Chat() {
           </div>
           <div>
             {profiles.map((item) => (
-              <div onClick={() => setId(item._id)}>
+              <div onClick={() => {setId(item._id); setSelected(item.name)}}>
                 <User name={item.name} />
               </div>
             ))}
@@ -74,8 +74,8 @@ function Chat() {
         <div className="right-wrapper">
           <div className="topbar">
             <div className="details">
-              <div className="circle"><span>{client.name.charAt(0)}</span></div>
-              <div className="name">{client.name}</div>
+              <div className="circle"><span>{selected.charAt(0)}</span></div>
+              <div className="name">{selected}</div>
             </div>
             <div className="logout">
               <span>Logout</span>

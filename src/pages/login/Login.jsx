@@ -24,6 +24,12 @@ function Login(props) {
     })
   }
 
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      login()
+    }
+  }
+
   return (
     <div className="login">
       <div className="login-card">
@@ -37,7 +43,7 @@ function Login(props) {
         <div className="input-container">
           <i className="material-icons">lock</i>
           <input className="input-field" type="text" name="Password" value={pass} placeholder="Password"
-            onChange={(e) => setPass(e.target.value)} />
+            onChange={(e) => setPass(e.target.value)} onKeyDown={handleEnter}/>
         </div>
         <div className="footer">
           <div className="dont-have-account">Don't have an account? </div>

@@ -81,7 +81,7 @@ class Service {
   }
 
   async sendMessage(id, value) {
-    const obj = { _id: this.generateId(), to: id, from: this.userId, message: value, time: new Date().getDate() }
+    const obj = { _id: this.generateId(), to: id, from: this.userId, message: value, time: new Date().getTime() }
 
     // Fire the insert query
     const res = await this.db.insert('messages').doc(obj).apply();

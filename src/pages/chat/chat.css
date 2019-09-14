@@ -47,12 +47,6 @@
   left: 30px;
 }
 
-.chat .right-wrapper .details .name {
-  margin-bottom: 4px;
-  font-size: 16px;
-  text-transform: capitalize;
-}
-
 .chat .right-wrapper .details .circle {
   height: 35px;
   width: 35px;
@@ -65,9 +59,22 @@
 
 .chat .right-wrapper .details .circle>span {
   position: relative;
-  top: 18%;
+  top: 20%;
   color: blue;
   text-transform: capitalize;
+}
+
+.chat .right-wrapper .details .name {
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.chat .right-wrapper .details .online {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: lightgreen;
+  margin-left: 12px;
 }
 
 .chat .right-wrapper .logout {
@@ -86,28 +93,6 @@
   cursor: pointer;
 }
 
-.chat .right-wrapper .text-area {
-  background-color: white;
-  border-radius: 30px;
-  height: 60px;
-  width: 100%;
-  position: absolute;
-  bottom: 1px;
-  border: none;
-  font-size: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chat .right-wrapper input[type="text"] {
-  border: none;
-  font-size: 16px;
-  margin-left: 32px;
-  height: 60px;
-  width: 100%;
-}
-
 .chat .right-wrapper .text-area .send-icon {
   margin-right: 32px;
 }
@@ -120,7 +105,7 @@
   background-color: lightgreen;
   border-radius: 10px;
   width: 40%;
-  padding: 8px;
+  padding: 8px 14px;
   margin-bottom: 12px;
   clear: both;
 }
@@ -129,8 +114,37 @@
   background-color: white;
   border-radius: 10px;
   width: 40%;
-  padding: 8px;
+  padding: 8px 14px;
   float: right;
   margin-bottom: 12px;
   clear: both;
+}
+
+.chat .right-wrapper .message-area .time {
+  float: right;
+  font-size: 12px;
+  color: #000;
+}
+
+.chat .right-wrapper .text-area {
+  background-color: white;
+  border-radius: 30px;
+  height: 56px;
+  width: 75%;
+  bottom: 4px;
+  border: none;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  /* position: absolute; */
+}
+
+.chat .right-wrapper input[type="text"] {
+  border: none;
+  font-size: 16px;
+  margin-left: 32px;
+  height: 56px;
+  width: 100%;
 }

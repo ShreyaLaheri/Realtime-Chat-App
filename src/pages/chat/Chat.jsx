@@ -10,7 +10,7 @@ function Chat() {
   const [profiles, setProfile] = useState([]);
   const [id, setId] = useState('');
   const [messages, setMessages] = useState([]);
-  const [selected, setSelected] =useState('');
+  const [selected, setSelected] = useState('');
 
   const handleEnter = (e) => {
     if (e.key === 'Enter') {
@@ -47,7 +47,7 @@ function Chat() {
       setMessages(list);
     }))
 
-    return subscription.unsubscribe;
+    return () => subscription.unsubscribe();
   }, [0]);
 
   const filteredMessages = messages.filter(msg => {
@@ -64,7 +64,7 @@ function Chat() {
           </div>
           <div>
             {profiles.map((item) => (
-              <div onClick={() => {setId(item._id); setSelected(item.name)}}>
+              <div onClick={() => { setId(item._id); setSelected(item.name) }}>
                 <User name={item.name} />
               </div>
             ))}
@@ -76,6 +76,7 @@ function Chat() {
             <div className="details">
               <div className="circle"><span>{selected.charAt(0)}</span></div>
               <div className="name">{selected}</div>
+              <div className="online"></div>
             </div>
             <div className="logout">
               <span>Logout</span>
@@ -90,7 +91,10 @@ function Chat() {
             <div className="message-area">
               <div className={
                 msg.to !== id ? 'send' : 'receive'
-              }>{msg.message}</div>
+              }>
+                <div className="time">{msg.time}</div>
+                <div>{msg.message}</div>
+              </div>
             </div>
           ))}
           <div className="text-area" >
